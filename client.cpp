@@ -12,6 +12,7 @@ ulong_t __stdcall Client::init(void* arg) {
 	std::string username;
 	user.open(XOR("C:/disunity.txt"), std::ios::in);
 	std::getline(user, username);
+	user.close();
 	g_cl.m_user = XOR("disunityv4");
 	g_cl.m_username = username;
 
