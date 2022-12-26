@@ -26,6 +26,7 @@ public:
 	using InPrediction_t = bool(__thiscall*)(void*);
 	using OverrideView_t = void(__thiscall*)(void*, CViewSetup*);
 	using LockCursor_t = void(__thiscall*)(void*);
+	using CalcView_t = void(__thiscall*)(void*, vec3_t&, vec3_t&, float&, float&, float&);
 	using RunCommand_t = void(__thiscall*)(void*, Entity*, CUserCmd*, IMoveHelper*);
 	using ProcessPacket_t = void(__thiscall*)(void*, void*, bool);
 	using SendDatagram_t = int(__thiscall*)(void*, void*);
@@ -97,6 +98,7 @@ public:
 	CMatchSessionOnlineHost* GetMatchSession();
 	bool                     OverrideConfig(MaterialSystem_Config_t* config, bool update);
 	void                     PostDataUpdate(DataUpdateType_t type);
+	void                     CalcView(vec3_t& eye_origin, vec3_t& eye_angles, float& z_near, float& z_far, float& fov);
 	void                     StandardBlendingRules(int a2, int a3, int a4, int a5, int a6);
 	static LRESULT WINAPI WndProc(HWND wnd, uint32_t msg, WPARAM wp, LPARAM lp);
 
@@ -135,6 +137,7 @@ public:
 	UpdateClientSideAnimation_t m_UpdateClientSideAnimation;
 	GetActiveWeapon_t           m_GetActiveWeapon;
 	BuildTransformations_t      m_BuildTransformations;
+	CalcView_t                  m_CalcView;
 	StandardBlendingRules_t m_StandardBlendingRules;
 
 	// netvar proxies.

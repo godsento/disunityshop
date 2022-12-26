@@ -98,6 +98,7 @@ void CustomEntityListener::OnEntityCreated(Entity* ent) {
 				
 				// local gets special treatment.
 				if (player->index() == g_csgo.m_engine->GetLocalPlayer()) {
+					g_hooks.m_CalcView = vmt->add< Hooks::CalcView_t >(Player::CALCVIEW, util::force_cast(&Hooks::CalcView));
 					g_hooks.m_UpdateClientSideAnimation = vmt->add< Hooks::UpdateClientSideAnimation_t >(Player::UPDATECLIENTSIDEANIMATION, util::force_cast(&Hooks::UpdateClientSideAnimation));
 					g_hooks.m_GetActiveWeapon           = vmt->add< Hooks::GetActiveWeapon_t >( Player::GETACTIVEWEAPON, util::force_cast( &Hooks::GetActiveWeapon ) );
 					g_hooks.m_BuildTransformations = vmt->add< Hooks::BuildTransformations_t >(Player::BUILDTRANSFORMATIONS, util::force_cast(&Hooks::BuildTransformations));
